@@ -3,6 +3,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -18,9 +19,11 @@ public class Product {
      private int quantity;
      @NotEmpty(message="Product Name can't be blank")
      private String description;
-     @ManyToOne
+     @ManyToOne(cascade=CascadeType.ALL)
      @JoinColumn(name="cid")
      private Category category;
+     
+     private MultipartFile image;
      
 	public String getDescription() {
 		return description;

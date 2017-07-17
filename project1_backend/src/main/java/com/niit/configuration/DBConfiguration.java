@@ -6,14 +6,16 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.model.Category;
-import com.niit.model.Product;
+import com.niit.dao.*;
+import com.niit.Service.*;
+import com.niit.model.*;
 
 
 
@@ -47,7 +49,13 @@ public class DBConfiguration {
 	public HibernateTransactionManager hibTransManagement() {
 		return new HibernateTransactionManager(sessionFactory());
 	}
-	
-	
-	
+
+	@Bean(name="ProductDao")
+	@Autowired
+	public ProductServiceImpl getProductDao(SessionFactory sessionFactory)
+	{
+		System.out.println("ProductDao object creation");
+		return new ProductServiceImpl(sessionFactory);
+	}
+
 }

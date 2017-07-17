@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.niit.dao.ProductDao;
 import com.niit.model.Category;
@@ -13,7 +14,7 @@ import com.niit.model.Product;
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService{
-	public ProductServiceImpl(){
+	public ProductServiceImpl(SessionFactory sessionFactory){
 		System.out.println("ProductServiceImpl object is created");
 	}
 
