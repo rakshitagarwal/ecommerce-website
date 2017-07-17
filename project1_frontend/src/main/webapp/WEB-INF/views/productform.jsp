@@ -52,5 +52,6 @@
 	</form:form>
 
 </body>
-<%@ include file="footer.jsp"%>
+
 </html>
+<%@ include file="footer.jsp"%>
