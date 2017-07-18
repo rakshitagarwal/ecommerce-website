@@ -42,12 +42,19 @@ public class ProductController {
 			return "productform";
 		}
         productService.saveProduct(product);
+    //    MultipartFile image=product.getImage();
+    //   Path path=("C:\Users\Rakshit\workspace\project1_frontend\src\main\webapp\WEB-INF\resources\images");    
+        
+        
+        
 		return "redirect:/all/product/getallproducts";
 	}
 	//http://localhost:8080/project1_frontend/all/product/getallproducts
 	@RequestMapping("/all/product/getallproducts")
 	public String getAllProducts(Model model){
 		List<Product> products= productService.getAllProducts();
+		//1st parameter is the key 
+		//2nd parameter is the value
 		model.addAttribute("products",products);
 		return "productlist";
 	}

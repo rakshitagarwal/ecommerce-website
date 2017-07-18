@@ -10,7 +10,7 @@
 <body>
 ${productObj}
 <c:url value="/admin/product/editproduct" var="uri"></c:url>
-<form:form action="${uri}" modelAttribute="productObj">
+<form:form action="${url}" modelAttribute="productObj" enctype="multipart/form-data">
 		<div class="form-group">
 			<form:hidden path="id" class="form-control" />
 		</div>
