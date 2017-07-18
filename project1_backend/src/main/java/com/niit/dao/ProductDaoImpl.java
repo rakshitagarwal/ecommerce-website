@@ -13,11 +13,14 @@ import com.niit.model.Product;
 
 @Repository
 public class ProductDaoImpl implements ProductDao{
+	
 	public ProductDaoImpl(){
 		System.out.println("ProductDaoImpl object is created");
 	}
+	
 	@Autowired
 	private SessionFactory sessionFactory;
+	
 	public void saveProduct(Product product){
 		Session session=sessionFactory.getCurrentSession();
 		session.save(product);

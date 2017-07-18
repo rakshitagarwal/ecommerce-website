@@ -41,7 +41,9 @@ public class DBConfiguration {
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		lsf.addProperties(hibernateProperties);
-		Class classes[] = new Class[] {Product.class, Category.class };
+		Class classes[] = new Class[] {Product.class, Category.class
+				,User.class,ShippingAddress.class,BillingAddress.class
+				,Cart.class,Authorities.class,Customer.class};
 		return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 	}
 
@@ -50,12 +52,5 @@ public class DBConfiguration {
 		return new HibernateTransactionManager(sessionFactory());
 	}
 
-	@Bean(name="ProductDao")
-	@Autowired
-	public ProductServiceImpl getProductDao(SessionFactory sessionFactory)
-	{
-		System.out.println("ProductDao object creation");
-		return new ProductServiceImpl(sessionFactory);
-	}
 
 }
