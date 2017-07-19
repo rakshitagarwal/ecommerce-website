@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<form:form action="saveproduct" method="post" modelAttribute="product">
+	<form:form action="saveproduct" method="post" modelAttribute="product" enctype="multipart/form-data">
 		<div class="form-group">
 			<form:hidden path="id" class="form-control" />
 		</div>

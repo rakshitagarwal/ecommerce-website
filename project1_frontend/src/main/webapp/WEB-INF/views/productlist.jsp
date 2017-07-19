@@ -7,11 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>
+$(document).ready(function(){
+	var searchCondition = '${searchCondition}';
+	$('.table').DataTable({
+		"lengthMenu" : [ [3,5,7,-1],[3,5,7,"All"]],
+		"oSearch" : {"sSearch": searchCondition}
+
+	})
+});
+</script>
 </head>
 <body>
-	<b>List of products</b>
 	<div class="container">
-		<table class="table table-striped">
+		<table class="table table-striped" border="1">
 			<thead>
 				<tr>
 					<th>Product Name</th>

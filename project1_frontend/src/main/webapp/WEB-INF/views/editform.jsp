@@ -42,9 +42,14 @@ ${productObj}
 			Select Category:
 			<c:forEach items="${categories}" var="c">
 				<form:radiobutton path="category.id" value="${c.id}"/>${c.categoryName}
-
-</c:forEach>
+			</c:forEach>
 		</div>
+		
+		<div class="form-group">
+		Upload an image
+		<input type="file" name="image">
+		</div>
+		
 		<div class="form-group">
 			<input type="submit" value="Edit Product">
 		</div>
