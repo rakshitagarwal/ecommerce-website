@@ -8,36 +8,46 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Customer {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@NotEmpty
 	private String firstname;
 	private String lastname;
-	@Column(unique=true,nullable=false)
+	@Column(unique = true, nullable = false)
 	@Email
 	private String email;
+	@NotEmpty
+	@Size(max = 10, min = 10)
 	private String phone;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	@Valid
 	private User user;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="billingaddress_id")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "billingaddress_id")
+	@Valid
 	private BillingAddress billingAddress;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="shippingaddress_id")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "shippingaddress_id")
+	@Valid
 	private ShippingAddress shippingAddress;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="cart_id")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id")
+	@Valid
 	private Cart cart;
 
 	public int getId() {
@@ -111,8 +121,5 @@ public class Customer {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
-	
-
 
 }

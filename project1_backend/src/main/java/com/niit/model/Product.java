@@ -17,7 +17,7 @@ public class Product {
 	@Min(value=50)
      private double price;
      private int quantity;
-     @NotEmpty(message="Product Name can't be blank")
+     @NotEmpty(message="Product descriptoin can't be blank")
      private String description;
      @ManyToOne(cascade=CascadeType.ALL)
      @JoinColumn(name="cid")
@@ -60,6 +60,12 @@ public class Product {
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	public MultipartFile getImage() {
+		return image;
+	}
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
      
 }

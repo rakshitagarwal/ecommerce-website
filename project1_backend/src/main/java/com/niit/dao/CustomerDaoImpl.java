@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.niit.model.Authorities;
 import com.niit.model.Cart;
 import com.niit.model.Customer;
+import com.niit.model.User;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -17,15 +18,23 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void registerCustomer(Customer customer) {
+		
+		
+		User user = customer.getUser();
+		user.setEnabled(true);
+		String  username = customer.getUser().getUsername();
+		
 		Authorities authorities = new Authorities();
 		authorities.setRole("ROLE_USER");
-		String username = customer.getUser().getUsername();
-		authorities.setUsername(username);
-		Session session = sessionFactory.getCurrentSession();
+        authorities.setUsername(username);
+		
+        Session session = sessionFactory.getCurrentSession();
 		session.save(authorities);
 		
 		Cart cart = new Cart();
+		//to set the value for customer_id in cart table
 		cart.setCustomer(customer);
+		//to set value for cart_id in customer table
 		customer.setCart(cart);
 		
 		session.save(customer);
