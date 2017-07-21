@@ -47,6 +47,11 @@
 </c:forEach>
 		</div>
 		<div class="form-group">
+		Upload an image:
+		<input type="file" name="image">
+		</div>
+		
+		<div class="form-group">
 			<input type="submit" value="Add Product">
 		</div>
 	</form:form>

@@ -9,11 +9,14 @@
 
 </head>
 <body>
-	<c:url value="/all/saveproduct" var="url" />
+<div class="container-wrapper">
+<div class="container">
+
+	<c:url value="/all/savecustomer" var="url" />
 	<form:form action="${url}" modelAttribute="customer">
 
 
-		<div class="boxed">
+		<div class="boxed" style="border:1px solid">
 			<div class="form-group">
 				<form:label path="firstname">Enter firstname</form:label>
 				<form:input path="firstname" />
@@ -63,8 +66,7 @@
 			<div class="form-group">
 				<form:label path="billingAddress.apartmentnumber">Enter Apartment Number</form:label>
 				<form:input path="billingAddress.apartmentnumber" />
-				<form:errors path="billingAddress.apartmentnumber"
-					cssStyle="color:red"></form:errors>
+				<form:errors path="billingAddress.apartmentnumber" cssStyle="color:red"></form:errors>
 			</div>
 
 			<div class="form-group">
@@ -142,7 +144,8 @@
 
 
 	</form:form>
-
+</div>
+</div>
 
 	<%@ include file="footer.jsp"%>
 </body>

@@ -20,10 +20,12 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<b>List of Products</b>
 	<div class="container">
-		<table class="table table-striped" border="1">
+		<table class="table table-striped" >
 			<thead>
 				<tr>
+					<th>Image</th>
 					<th>Product Name</th>
 					<th>Category</th>
 					<th>Price</th>
@@ -52,5 +54,4 @@ $(document).ready(function(){
 		</table>
 	</div>
 </body>
-<%@ include file="footer.jsp"%>
 </html>
