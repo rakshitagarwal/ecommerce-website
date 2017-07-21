@@ -6,15 +6,12 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.dao.*;
-import com.niit.Service.*;
 import com.niit.model.*;
 
 
@@ -22,7 +19,7 @@ import com.niit.model.*;
 @Configuration
 @EnableTransactionManagement
 public class DBConfiguration {
-
+    
 	@Bean
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
@@ -33,6 +30,7 @@ public class DBConfiguration {
 		return dataSource;
 	}
 
+	
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder lsf = new LocalSessionFactoryBuilder(getDataSource());
@@ -47,6 +45,7 @@ public class DBConfiguration {
 		return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 	}
 
+	
 	@Bean
 	public HibernateTransactionManager hibTransManagement() {
 		return new HibernateTransactionManager(sessionFactory());

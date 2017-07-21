@@ -22,7 +22,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 		User user = customer.getUser();
 		user.setEnabled(true);
-		String  username = customer.getUser().getUsername();
+		String  username = user.getUsername();
 		
 		Authorities authorities = new Authorities();
 		authorities.setRole("ROLE_USER");

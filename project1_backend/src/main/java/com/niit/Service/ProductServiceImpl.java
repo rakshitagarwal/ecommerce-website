@@ -14,9 +14,8 @@ import com.niit.model.Product;
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService{
-	private SessionFactory sessionFactory;
+
 	public ProductServiceImpl(SessionFactory sessionFactory){
-		this.sessionFactory=sessionFactory;
 		System.out.println("ProductServiceImpl object is created");
 	}
 
