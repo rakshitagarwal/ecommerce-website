@@ -12,9 +12,10 @@
 $(document).ready(function(){
 	var searchCondition = '${searchCondition}';
 	$('.table').DataTable({
-		"lengthMenu" : [ [3,5,7,-1],[3,5,7,"All"]],
-		"oSearch" : {"sSearch": searchCondition}
-
+		"lengthMenu" : [ [ 3 , 5 , 7 , -1 ] , [ 3 , 5 , 7 , "All" ] ],
+		"oSearch" : {
+			"sSearch": searchCondition
+			}
 	})
 });
 </script>
@@ -33,7 +34,7 @@ $(document).ready(function(){
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${produts}" var="p">
+				<c:forEach items="${products}" var="p">
 				    <c:url value="/resources/images/${p.id}.png" var="imageUrl"></c:url>
 					<c:url value="/all/product/viewproduct/${p.id}" var="viewUrl"></c:url>
 					<c:url value="/admin/product/deleteproduct/${p.id}" var="deleteUrl"></c:url>

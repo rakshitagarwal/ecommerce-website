@@ -2,6 +2,7 @@ package com.niit.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.niit.Service.ProductService;
@@ -88,6 +90,17 @@ public class ProductController {
 	@RequestMapping("/admin/product/deleteproduct/{id}")
 	public String deleteProductById(@PathVariable int id) {
 		productService.deleteProduct(id);
+		
+		Path path=
+		 		Paths.get("C:\\Users\\Rakshit\\workspace\\project1_frontend\\src\\main\\webapp\\WEB-INF\\resources\\images\\"+".png");
+
+		if(Files.exists(path)){
+				try {
+					Files.delete(path);
+				} catch(IOException e){
+					e.printStackTrace();
+				}
+		}
 		return "redirect:/all/product/getallproducts";
 	}
 
@@ -125,6 +138,17 @@ public class ProductController {
 		}
 		
 		return "redirect:/all/product/getallproducts";
+	}
+	
+	@RequestMapping("/all/product/searchbycategory")
+	public String selectByCategory(@RequestParam String searchCondition , Model model)
+	{
+		model.addAttribute("products",productService.getAllProducts());
+		if(searchCondition.equals("ALL"))
+			model.addAttribute("searchCondition","");
+		else	
+		model.addAttribute("searchCondition",searchCondition);
+		return "productlist";
 	}
 
 }

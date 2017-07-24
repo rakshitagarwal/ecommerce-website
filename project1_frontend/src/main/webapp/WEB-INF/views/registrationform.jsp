@@ -19,20 +19,21 @@
 		<div class="boxed" style="border:1px solid">
 			<div class="form-group">
 				<form:label path="firstname">Enter firstname</form:label>
-				<form:input path="firstname" />
+				<form:input path="firstname" class="form-control"/>
 				<form:errors path="firstname" cssStyle="color:red"></form:errors>
 			</div>
 
 			<div class="form-group">
 				<form:label path="lastname">Enter Lastname</form:label>
-				<form:input path="lastname" />
+				<form:input path="lastname" class="form-control"/>
 				<form:errors path="lastname" cssStyle="color:red"></form:errors>
 			</div>
 
 			<div class="form-group">
 				<form:label path="email">Enter email</form:label>
-				<form:input path="email" />
+				<form:input path="email" class="form-control"/>
 				<form:errors path="email" cssStyle="color:red"></form:errors>
+				<p style="color:red">${duplicateEmail}</p>
 			</div>
 
 			<div class="form-group">
@@ -47,16 +48,17 @@
 				<form:label path="user.username">Enter Username</form:label>
 				<form:input path="user.username" />
 				<form:errors path="user.username" cssStyle="color:red"></form:errors>
+				<p style="color:red">${duplicateUsername}</p>
 			</div>
 
 			<div class="form-group">
-				<form:label path="user.password" type="password">Enter Password</form:label>
-				<form:input path="user.password" />
+				<form:label path="user.password" >Enter Password</form:label>
+				<form:input path="user.password" type="password"/>
 				<form:errors path="user.password" cssStyle="color:red"></form:errors>
 			</div>
 		</div>
 
-		<div class="boxed">
+		<div class="boxed" style="border:1px solid">
 			<div class="form-group">
 				<form:label path="billingAddress.streetname">Enter Streetname</form:label>
 				<form:input path="billingAddress.streetname" />
@@ -94,7 +96,7 @@
 			</div>
 		</div>
 
-		<div class="boxed">
+		<div class="boxed" style="border:1px solid">
 			<div class="form-group">
 				<form:label path="shippingAddress.streetname">Enter Streetname</form:label>
 				<form:input path="shippingAddress.streetname" />
