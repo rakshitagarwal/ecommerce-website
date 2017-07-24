@@ -12,8 +12,15 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.model.*;
+import com.niit.model.Authorities;
+import com.niit.model.BillingAddress;
+import com.niit.model.Cart;
+import com.niit.model.Category;
+import com.niit.model.Customer;
+import com.niit.model.Product;
 
+import com.niit.model.ShippingAddress;
+import com.niit.model.User;
 
 
 @Configuration
@@ -29,27 +36,24 @@ public class DBConfiguration {
 		dataSource.setPassword("12345");
 		return dataSource;
 	}
-
-	
-	@Bean
-	public SessionFactory sessionFactory() {
-		LocalSessionFactoryBuilder lsf = new LocalSessionFactoryBuilder(getDataSource());
-		Properties hibernateProperties = new Properties();
-		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
-		hibernateProperties.setProperty("hibernate.show_sql", "true");
-		lsf.addProperties(hibernateProperties);
-		Class classes[] = new Class[] {Product.class, Category.class
-				,User.class,ShippingAddress.class,BillingAddress.class
-				,Cart.class,Authorities.class,Customer.class};
-		return lsf.addAnnotatedClasses(classes).buildSessionFactory();
+	   @Bean
+	    public SessionFactory sessionFactory() {
+	        LocalSessionFactoryBuilder lsf=
+	                new LocalSessionFactoryBuilder(getDataSource());
+	        Properties hibernateProperties=new Properties();
+	        hibernateProperties.setProperty(
+	                "hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+	        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+	        hibernateProperties.setProperty("hibernate.show_sql", "true");
+	        lsf.addProperties(hibernateProperties);
+	        //An array of Class objects of all the entities
+	        Class classes[]=new Class[]{Product.class,Category.class,
+	                User.class,Customer.class,Authorities.class,BillingAddress.class,
+	                ShippingAddress.class,Cart.class};
+	        return lsf.addAnnotatedClasses(classes).buildSessionFactory();
+	    }
+	    @Bean
+	    public HibernateTransactionManager hibTransManagement(){
+	        return new HibernateTransactionManager(sessionFactory());
+	    }
 	}
-
-	
-	@Bean
-	public HibernateTransactionManager hibTransManagement() {
-		return new HibernateTransactionManager(sessionFactory());
-	}
-
-
-}

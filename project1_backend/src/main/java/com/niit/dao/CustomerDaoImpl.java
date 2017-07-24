@@ -1,5 +1,6 @@
 package com.niit.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import org.hibernate.SessionFactory;
@@ -35,10 +36,31 @@ public class CustomerDaoImpl implements CustomerDao {
 		//to set the value for customer_id in cart table
 		cart.setCustomer(customer);
 		//to set value for cart_id in customer table
-		customer.setCart(cart);
+		customer.setCart(cart);  //transient all 5 objects
 		
-		session.save(customer);
+		session.save(customer);  //5 insert queries [persistent]
 		
+	}
+
+	@Override
+	public User ValidUsername(String username) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from User where username = ?");
+		query.setString(0, username);
+		User user = (User)query.uniqueResult();
+		//
+		//
+		return user;
+	}
+
+	@Override
+	public Customer ValidateEmail(String email) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Customer where email = ?");
+		query.setString(0, email);
+		Customer customer = (Customer)query.uniqueResult();
+
+		return customer;
 	}
 	
 	

@@ -19,10 +19,10 @@ public class Product {
      private int quantity;
      @NotEmpty(message="Product descriptoin can't be blank")
      private String description;
-     @ManyToOne(cascade=CascadeType.ALL)
+     @ManyToOne
      @JoinColumn(name="cid")
      private Category category;
-     
+     @Transient  // it will not get persisted
      private MultipartFile image;
      
 	public String getDescription() {
