@@ -12,23 +12,16 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.model.Authorities;
-import com.niit.model.BillingAddress;
-import com.niit.model.Cart;
-import com.niit.model.Category;
-import com.niit.model.Customer;
-import com.niit.model.Product;
-
-import com.niit.model.ShippingAddress;
-import com.niit.model.User;
+import com.niit.model.*;
 
 
 @Configuration
 @EnableTransactionManagement
 public class DBConfiguration {
-    
+	
+
 	@Bean
-	public DataSource getDataSource() {
+	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
 		dataSource.setUrl("jdbc:h2:tcp://localhost/~/ecommerce1");
@@ -39,12 +32,12 @@ public class DBConfiguration {
 	   @Bean
 	    public SessionFactory sessionFactory() {
 	        LocalSessionFactoryBuilder lsf=
-	                new LocalSessionFactoryBuilder(getDataSource());
+	                new LocalSessionFactoryBuilder(dataSource());
 	        Properties hibernateProperties=new Properties();
 	        hibernateProperties.setProperty(
 	                "hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 	        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
-	        hibernateProperties.setProperty("hibernate.show_sql", "true");
+		hibernateProperties.setProperty("hibernate.show_sql", "true");
 	        lsf.addProperties(hibernateProperties);
 	        //An array of Class objects of all the entities
 	        Class classes[]=new Class[]{Product.class,Category.class,
@@ -56,4 +49,6 @@ public class DBConfiguration {
 	    public HibernateTransactionManager hibTransManagement(){
 	        return new HibernateTransactionManager(sessionFactory());
 	    }
-	}
+	
+
+}
