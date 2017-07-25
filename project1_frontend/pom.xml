@@ -53,7 +53,6 @@
 			<version>2.1.1</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>com.niit</groupId>
 			<artifactId>project1_backend</artifactId>
