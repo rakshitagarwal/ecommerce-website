@@ -9,8 +9,18 @@
    http://www.springframework.org/schema/security/spring-security.xsd">
    
    <security:http auto-config="true">
-   <security:intercept-url pattern="/home" access="permitAll"/>
-   <security:intercept-url pattern="/all/**" access="hasRole('ROLE_USER')"/>
+   <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+      <security:intercept-url pattern="/**" access="permitAll"/>
+   
+   <security:form-login login-page="/login" 
+   username-parameter="j_username" password-parameter="j_password" 
+   login-processing-url="j_spring_security_check" 
+   default-target-url="/home"
+   authentication-failure-url="/login" />
+   
+   <security:logout logout-success-url="/login" 
+   logout-url="/j_spring_security_logout" />
+   
    </security:http>
    
    <security:authentication-manager>

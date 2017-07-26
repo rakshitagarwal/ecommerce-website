@@ -75,10 +75,23 @@
 								<c:url value="/all/product/searchbycategory?searchCondition=ALL" var="url1"></c:url> 
 								<a href="${url1}">ALL</a></li>
 						</ul></li>
+						<li>
+						<c:if test="${pageContext.request.userPrincipal.name!=null }">
+						<a href="">Welcome ${pageContext.request.userPrincipal.name}</a>
+						</c:if>
+						</li>
 					<c:url value="/all/registrationform" var="url5"></c:url>
-					<li><a href="${url5}">Sign ups</a></li>
-				</ul>
-			</div>
+					<li><a href="${url5}">Sign up</a></li>
+					
+					<c:url value="/login" var="url6"></c:url>
+					<li><a href="${url6}">Sign in</a></li>
+					
+					<c:url value="/j_spring_security_logout" var="logouturl"></c:url>
+					<c:if test="${pageContext.request.userPrincipal.name!=null }">
+					<li><a href="${logouturl}">Log Out</a></li>
+				    </c:if>
+				    </ul>
+			        </div>
 		</div>
 	</nav>
 
