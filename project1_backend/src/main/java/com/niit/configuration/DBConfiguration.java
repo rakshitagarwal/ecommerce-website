@@ -20,8 +20,8 @@ import com.niit.model.*;
 public class DBConfiguration {
 	
 
-	@Bean
-	public DataSource dataSource() {
+	@Bean(name="dataSource")
+	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
 		dataSource.setUrl("jdbc:h2:tcp://localhost/~/ecommerce1");
@@ -32,7 +32,7 @@ public class DBConfiguration {
 	   @Bean
 	    public SessionFactory sessionFactory() {
 	        LocalSessionFactoryBuilder lsf=
-	                new LocalSessionFactoryBuilder(dataSource());
+	                new LocalSessionFactoryBuilder(getDataSource());
 	        Properties hibernateProperties=new Properties();
 	        hibernateProperties.setProperty(
 	                "hibernate.dialect", "org.hibernate.dialect.H2Dialect");
