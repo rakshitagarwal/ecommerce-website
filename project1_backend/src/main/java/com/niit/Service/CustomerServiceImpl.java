@@ -30,4 +30,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.ValidateEmail(email);
 	}
 
+	@Override
+	public Customer getCustomerByUsername(String username) {
+		return customerDao.getCustomerByUsername(username);
+	}
+
 }

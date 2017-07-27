@@ -62,6 +62,15 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		return customer;
 	}
+
+	@Override
+	public Customer getCustomerByUsername(String username) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from Customer where user.username=?");
+		query.setString(0, username);
+		Customer customer = (Customer)query.uniqueResult();
+		return customer;
+	}
 	
 	
 

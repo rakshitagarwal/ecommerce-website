@@ -1,10 +1,13 @@
 package com.niit.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,6 +20,8 @@ public class Cart {
 	@OneToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
+	@OneToMany(mappedBy="cart")
+	private List<CartItem> cartItems;
 	
 	public int getId() {
 		return id;
@@ -36,5 +41,12 @@ public class Cart {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	public List<CartItem> getCartItems() {
+		return cartItems;
+	}
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+	
 
 }

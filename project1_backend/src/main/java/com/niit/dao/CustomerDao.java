@@ -8,5 +8,6 @@ public interface CustomerDao {
 	void registerCustomer(Customer customer);
 	User ValidUsername(String username);
 	Customer ValidateEmail(String email);
+	Customer getCustomerByUsername(String username);
 
 }
