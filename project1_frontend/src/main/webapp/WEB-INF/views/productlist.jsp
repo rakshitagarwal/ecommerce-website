@@ -43,11 +43,13 @@ $(document).ready(function(){
 						<td><a href="${viewUrl}">${p.productName}</a></td>
 						<td>${p.category.categoryName}</td>
 						<td>${p.price}</td>
-						<td><a href="${viewUrl}"><span
-								class="glyphicon glyphicon-info-sign"></span></a> <a
-							href="${deleteUrl}"><span class="glyphicon glyphicon-trash"></span></a>
-							<c:url value="/admin/product/geteditform/${p.id}" var="editUrl"></c:url>
-							<a href="${editUrl}"><span class="glyphicon glyphicon-pencil"></span></a>
+						<td><a href="${viewUrl}"><span class="glyphicon glyphicon-info-sign"></span></a>
+						
+						<security:authorize access="hasRole('ROLE_ADMIN')"> 
+						<a href="${deleteUrl}"><span class="glyphicon glyphicon-trash"></span></a>
+						<c:url value="/admin/product/geteditform/${p.id}" var="editUrl"></c:url>
+						<a href="${editUrl}"><span class="glyphicon glyphicon-pencil"></span></a>
+						</security:authorize>
 						</td>
 					</tr>
 				</c:forEach>

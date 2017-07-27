@@ -8,15 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-ENTER USERNAME AND PASSWORD
-${error}
-${logout}
-${registrationSuccess }
+
 <c:url value="/j_spring_security_check" var="login"></c:url>
 <form action="${login}" method="post">
 Enter Username:<input type="text" name="j_username"><br>
 Enter Password:<input type="password" name="j_password"><br>
-<input type="submit" name="Login">
+<input type="submit" value="Login">
 </form>
 
 </body>

@@ -42,9 +42,11 @@
 		<br>
 		<div class="form-group">
 			Select Category:
+			<form:select path="category.id">
 			<c:forEach items="${categories}" var="c">
-				<form:radiobutton path="category.id" value="${c.id}"/>${c.categoryName}
+				<form:option value="${c.id}">${c.categoryName}</form:option>
 			</c:forEach>
+			</form:select>
 		</div>
 		<div class="form-group">
 		Upload an image:

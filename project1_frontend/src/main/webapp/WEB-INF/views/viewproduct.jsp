@@ -13,24 +13,23 @@
 	<table>
 		<tr>
             <td></td><td><img src="${imageUrl}" height="70" width="70"></td>
-			<td>Product Name:</td>
-			<td>${product.productName }</td>
+        </tr>
+        <tr>
+			<td>Product Name:</td><td>${product.productName }</td>
 		</tr>
 		<tr>
-			<td>Price :</td>
-			<td>${product.productName }</td>
+			<td>Price :</td><td>${product.productName }</td>
 		</tr>
 		<tr>
-			<td>Description:</td>
-			<td>${product.description }</td>
+			<td>Description:</td><td>${product.description }</td>
 		</tr>
 		<tr>
-			<td>Quantity:</td>
-			<td>${product.quantity }</td>
+			<td>Quantity:</td><td>${product.quantity }</td>
 		</tr>
 	</table>
+	Enter Units<input type="text" name="units">
+	<a href="/cart/addtocart/${product.id }/${units}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 
-    
 	<c:url value="/all/product/getallproducts" var="url1"></c:url>
 	<a href="${url1 }">Back to product list</a>
 </body>
