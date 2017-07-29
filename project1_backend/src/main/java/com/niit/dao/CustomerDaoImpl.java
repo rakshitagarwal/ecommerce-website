@@ -20,17 +20,17 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public void registerCustomer(Customer customer) {
 		
-		
 		User user = customer.getUser();
+		System.out.println(user);
 		user.setEnabled(true);
 		String  username = user.getUsername();
 		
 		Authorities authorities = new Authorities();
 		authorities.setRole("ROLE_USER");
-        authorities.setUsername(username);
+        authorities.setUsername(username);//transcient
 		
         Session session = sessionFactory.getCurrentSession();
-		session.save(authorities);
+		session.save(authorities);//1 insert query //persistent
 		
 		Cart cart = new Cart();
 		//to set the value for customer_id in cart table
@@ -48,8 +48,8 @@ public class CustomerDaoImpl implements CustomerDao {
 		Query query = session.createQuery("from User where username = ?");
 		query.setString(0, username);
 		User user = (User)query.uniqueResult();
-		//
-		//
+		//if query.uniqueResult returns a single object (1 row) ,then username is duplicate
+		//if query.uniqueResult returns null value(no row) ,then username is unique
 		return user;
 	}
 
@@ -59,8 +59,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		Query query = session.createQuery("from Customer where email = ?");
 		query.setString(0, email);
 		Customer customer = (Customer)query.uniqueResult();
-
-		return customer;
+        return customer;
 	}
 
 	@Override
