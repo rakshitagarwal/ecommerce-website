@@ -91,6 +91,10 @@
 						<a href="">Welcome ${pageContext.request.userPrincipal.name}</a>
 						</c:if>
 						</li>
+						
+						<li><security:authorize access="hasRole('ROLE_USER')">
+						<li><a href = "<c:url value="/cart/getcart"></c:url>">Cart</a></li>
+						</security:authorize></li>
 					
 					<c:if test="${pageContext.request.userPrincipal.name==null }">
 					<c:url value="/all/registrationform" var="url5"></c:url>

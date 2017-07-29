@@ -27,9 +27,20 @@
 			<td>Quantity:</td><td>${product.quantity }</td>
 		</tr>
 	</table>
-	Enter Units<input type="text" name="units">
-	<a href="/cart/addtocart/${product.id }/${units}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-
+	<c:if test="${product.quantity==0 }">
+	Out of Stock
+	</c:if>
+	
+    <c:if test="${product.quantity!=0 }">
+	<c:url value="/cart/addtocart/${product.id }" var="url"></c:url>
+	<form action="${url }">
+	Enter Units<input type="text" name="units"><br>
+	
+	<button type="submit" 
+	style="background:none;border:none;padding:0" class="btn btn-default btn-lg">
+	<span class="glyphicon glyphicon-shopping-cart"></span></button>
+	</form>
+	</c:if>
 	<c:url value="/all/product/getallproducts" var="url1"></c:url>
 	<a href="${url1 }">Back to product list</a>
 </body>

@@ -26,7 +26,8 @@ public class CustomerController {
 
 	@RequestMapping("/all/savecustomer")
 	public String registerCustomer(@Valid @ModelAttribute Customer customer, 
-			BindingResult result , Model model) //Notempty , size , wellformed email , address , @Valid
+			BindingResult result , Model model) 
+	//Notempty , size , wellformed email , address , @Valid
 	{
 
 		if (result.hasErrors()) {
