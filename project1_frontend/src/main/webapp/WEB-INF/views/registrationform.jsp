@@ -15,7 +15,6 @@
 	<c:url value="/all/savecustomer" var="url" />
 	<form:form action="${url}" modelAttribute="customer">
 
-
 		<div class="boxed" style="border:1px solid">
 			<div class="form-group">
 				<form:label path="firstname">Enter firstname</form:label>

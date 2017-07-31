@@ -33,13 +33,13 @@ public class CustomerController {
 		if (result.hasErrors()) {
 			return "registrationform";
 		}
-		User user = customerService.ValidUsername(customer.getUser().getUsername());
+		User user = customerService.validateUsername(customer.getUser().getUsername());
 		if(user!=null) //duplicate username
 		{
 			model.addAttribute("duplicateUsername","Username already exists");
 			return "registrationform";
 		}
-		Customer duplicateCustomer = customerService.ValidateEmail(customer.getEmail());
+		Customer duplicateCustomer = customerService.validateEmail(customer.getEmail());
 		if(duplicateCustomer!=null)
 		{
 			model.addAttribute("duplicateEmail","Email address already exists");

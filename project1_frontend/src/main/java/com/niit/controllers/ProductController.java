@@ -32,7 +32,7 @@ public class ProductController {
 	}
 
 	// http://localhost:8080/project1_frontend/getprodutform
-	@RequestMapping("/getproductform")
+	@RequestMapping("/admin/getproductform")
 	public String getProductForm(Model model) {
 		List<Category> categories = productService.getAllCategories();
 		model.addAttribute("categories", categories);
@@ -40,11 +40,12 @@ public class ProductController {
 		return "productform";
 	}
 
-	@RequestMapping("/saveproduct")
+	@RequestMapping("/admin/saveproduct")
 	public String saveProduct(@Valid @ModelAttribute(name = "product") Product product, BindingResult result,
 			Model model) {
 		if (result.hasErrors()) {
 			List<Category> categories = productService.getAllCategories();
+			System.out.println(categories);
 			model.addAttribute("categories", categories);
 			return "productform";
 		}

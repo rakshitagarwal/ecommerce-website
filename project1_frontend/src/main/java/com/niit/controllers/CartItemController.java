@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +18,7 @@ import com.niit.model.Cart;
 import com.niit.model.CartItem;
 import com.niit.model.Customer;
 import com.niit.model.Product;
-import com.niit.model.User;
-
+@Controller
 public class CartItemController {
 	@Autowired
 	private ProductService productService;
@@ -30,6 +31,7 @@ public class CartItemController {
 	public String addCartItem(@PathVariable int id, @RequestParam int units ,Model model){
 		Product product=productService.getProductById(id);
 		//To get the user details , get the Principal object from securitycontextholder
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
 		String username=user.getUsername();
 		Customer customer=customerService.getCustomerByUsername(username);

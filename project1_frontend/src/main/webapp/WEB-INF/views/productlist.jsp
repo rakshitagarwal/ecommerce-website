@@ -15,7 +15,7 @@ $(document).ready(function(){
 		"lengthMenu" : [ [ 3 , 5 , 7 , -1 ] , [ 3 , 5 , 7 , "All" ] ],
 		"oSearch" : {
 			"sSearch": searchCondition
-			}
+		}
 	})
 });
 </script>
