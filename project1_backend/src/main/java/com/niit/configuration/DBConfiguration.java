@@ -42,7 +42,7 @@ public class DBConfiguration {
 	        //An array of Class objects of all the entities
 	        Class classes[]=new Class[]{Product.class,Category.class,
 	                User.class,Customer.class,Authorities.class,BillingAddress.class,
-	                ShippingAddress.class,Cart.class ,CartItem.class};
+	                ShippingAddress.class,Cart.class ,CartItem.class,CustomerOrder.class};
 	        return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 	    }
 	    @Bean

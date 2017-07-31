@@ -16,7 +16,7 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private String grandTotal;
+	private double grandTotal;
 	@OneToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
@@ -29,10 +29,11 @@ public class Cart {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getGrandTotal() {
+	
+	public double getGrandTotal() {
 		return grandTotal;
 	}
-	public void setGrandTotal(String grandTotal) {
+	public void setGrandTotal(double grandTotal) {
 		this.grandTotal = grandTotal;
 	}
 	public Customer getCustomer() {

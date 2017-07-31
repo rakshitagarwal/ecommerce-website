@@ -37,15 +37,14 @@ public class CustomerDaoImpl implements CustomerDao {
 		cart.setCustomer(customer);
 		//to set value for cart_id in customer table
 		customer.setCart(cart);  //transient all 5 objects
-		
 		session.save(customer);  //5 insert queries [persistent]
 		
 	}
 
 	@Override
-	public User ValidUsername(String username) {
+	public User validateUsername(String username) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from User where username = ?");
+		Query query = session.createQuery("from User where username=?");
 		query.setString(0, username);
 		User user = (User)query.uniqueResult();
 		//if query.uniqueResult returns a single object (1 row) ,then username is duplicate
@@ -54,9 +53,9 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public Customer ValidateEmail(String email) {
+	public Customer validateEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Customer where email = ?");
+		Query query = session.createQuery("from Customer where email=?");
 		query.setString(0, email);
 		Customer customer = (Customer)query.uniqueResult();
         return customer;
@@ -70,7 +69,4 @@ public class CustomerDaoImpl implements CustomerDao {
 		Customer customer = (Customer)query.uniqueResult();
 		return customer;
 	}
-	
-	
-
 }

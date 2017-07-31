@@ -21,13 +21,13 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public User ValidUsername(String username) {
-		return customerDao.ValidUsername(username);
+	public User validateUsername(String username) {
+		return customerDao.validateUsername(username);
 	}
 
 	@Override
-	public Customer ValidateEmail(String email) {
-		return customerDao.ValidateEmail(email);
+	public Customer validateEmail(String email) {
+		return customerDao.validateEmail(email);
 	}
 
 	@Override

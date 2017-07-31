@@ -1,5 +1,7 @@
 package com.niit.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,17 @@ public class CartItemDaoImpl implements CartItemDao {
 	public void removeAllCartItem(int cartId) {
 		Session session=sessionFactory.getCurrentSession();
 		Cart cart=(Cart)session.get(Cart.class, cartId);
+		List<CartItem> cartItems=cart.getCartItems();
+		for(CartItem cartItem:cartItems){
+			session.delete(cartItem);
+		}	
+	}
 
+	@Override
+	public Cart getCart(int cartId) {
+		Session session=sessionFactory.getCurrentSession();
+		Cart cart=(Cart)session.get(Cart.class, cartId);
+		return cart;
 		
 	}
 

@@ -6,8 +6,8 @@ import com.niit.model.User;
 public interface CustomerService {
 	
 	void registerCustomer(Customer customer);
-	User ValidUsername(String username);
-	Customer ValidateEmail(String email);
+	User validateUsername(String username);
+	Customer validateEmail(String email);
     Customer getCustomerByUsername(String username);
 
 }
