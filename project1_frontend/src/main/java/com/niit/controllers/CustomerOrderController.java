@@ -1,7 +1,9 @@
 package com.niit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,16 +15,24 @@ import com.niit.model.CustomerOrder;
 import com.niit.model.ShippingAddress;
 import com.niit.Service.CartItemService;
 import com.niit.Service.CustomerOrderService;
+import com.niit.Service.CustomerService;
 @Controller
 public class CustomerOrderController {
 	@Autowired
 	private CustomerOrderService customerOrderService;
 	@Autowired
 	private CartItemService cartItemService;
+	@Autowired
+	private CustomerService customerService;
 	@RequestMapping("/cart/shippingaddressform/{cartId}")
 	public String getShippingAddress(@PathVariable int cartId,Model model){
-		Cart cart=cartItemService.getCart(cartId);
-		Customer customer=cart.getCustomer();
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
+		String username=user.getUsername();
+		Customer customer=customerService.getCustomerByUsername(username);
+		Cart cart=customer.getCart();
+		//cart=cartItemService.getCart(cartId);
+		//customer=cart.getCustomer();
 		model.addAttribute("shippingAddress",customer.getShippingAddress());
 		model.addAttribute("cartid",cartId);
 		return "shippingaddressform";

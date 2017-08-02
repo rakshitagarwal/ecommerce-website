@@ -63,6 +63,7 @@
 					<c:url value="/admin/getproductform" var="url3"></c:url>
                     <li>
 					<c:if test="${pageContext.request.userPrincipal.name!=null }">
+					
 					<security:authorize access="hasRole('ROLE_ADMIN')">
 					<a href="${url3}">Add Product</a>
 					</security:authorize>
@@ -75,14 +76,15 @@
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">Select by Category<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li>
-							<c:forEach items="${categories}" var="c">
-							<c:url value="/all/product/searchbycategory?searchCondition=${c.categoryName}" var="url"></c:url>
-							<a href="${url}">${c.categoryName}</a>
-							</c:forEach>
+						<li>
+						<c:forEach items="${categories}" var="c">
+						<c:url value="/all/product/searchbycategory?searchCondition=${c.categoryName}" 
+						var="url"></c:url>
+						<a href="${url}">${c.categoryName}</a>
+						</c:forEach>
 							 
-								
-								<c:url value="/all/product/searchbycategory?searchCondition=ALL" var="url1"></c:url> 
+								<c:url value="/all/product/searchbycategory?searchCondition=ALL" 
+								var="url1"></c:url> 
 								<a href="${url1}">ALL</a></li>
 						</ul></li>
 						

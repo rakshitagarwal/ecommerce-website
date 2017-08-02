@@ -14,7 +14,7 @@ import com.niit.model.Customer;
 import com.niit.model.User;
 
 @Controller
-public class CustomerController {
+public class CustomerController { 
 	@Autowired
 	private CustomerService customerService;
 

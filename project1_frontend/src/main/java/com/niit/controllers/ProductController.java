@@ -37,6 +37,7 @@ public class ProductController {
 		List<Category> categories = productService.getAllCategories();
 		model.addAttribute("categories", categories);
 		model.addAttribute("product", new Product());
+		System.out.println(categories);
 		return "productform";
 	}
 
