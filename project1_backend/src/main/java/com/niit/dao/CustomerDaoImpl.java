@@ -60,7 +60,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		Customer customer = (Customer)query.uniqueResult();
         return customer;
 	}
-
+	
 	@Override
 	public Customer getCustomerByUsername(String username) {
 		Session session = sessionFactory.getCurrentSession();
