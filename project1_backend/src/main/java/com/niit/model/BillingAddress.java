@@ -1,19 +1,15 @@
 package com.niit.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class BillingAddress {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	@NotEmpty
+	@NotEmpty(message="Street Name is Mandatory")
 	private String streetname;
 	private String apartmentnumber;
 	@NotEmpty
@@ -23,8 +19,7 @@ public class BillingAddress {
 	@NotEmpty
 	private String country;
 	@NotEmpty
-	private String Zipcode;
-	
+	private String zipcode;
 	public int getId() {
 		return id;
 	}
@@ -62,13 +57,9 @@ public class BillingAddress {
 		this.country = country;
 	}
 	public String getZipcode() {
-		return Zipcode;
+		return zipcode;
 	}
 	public void setZipcode(String zipcode) {
-		Zipcode = zipcode;
+		this.zipcode = zipcode;
 	}
-	
-	
-	
-
 }

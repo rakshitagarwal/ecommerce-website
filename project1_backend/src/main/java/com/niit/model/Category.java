@@ -35,8 +35,8 @@ public class Category {
 		this.products = products;
 	}
 	@Override
-	public String toString(){
+	public String toString() {
 		return this.id + " " + this.categoryName;
 	}
-    
+
 }

@@ -17,7 +17,7 @@ import com.niit.model.ShippingAddress;
 @Repository
 public class CustomerOrderDaoImpl implements CustomerOrderDao{
 	@Autowired
-private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	@Autowired
 	private CartItemDao cartItemDao;
 	public CustomerOrder createOrder(Cart cart) {
@@ -32,13 +32,12 @@ private SessionFactory sessionFactory;
 		Customer customer=cart.getCustomer();
 		CustomerOrder customerOrder=new CustomerOrder();
 		customerOrder.setPurchaseDate(new Date());
-		customerOrder.setCart(cart);//fk to cart
-		customerOrder.setCustomer(customer);//fk to customer
-		customerOrder.setBillingAddress(customer.getBillingAddress());//fk to billingaddress
-		customerOrder.setShippingAddress(customer.getShippingAddress());//fk to shippingaddress
+		customerOrder.setCart(cart);
+		customerOrder.setCustomer(customer);
+		customerOrder.setBillingAddress(customer.getBillingAddress());
+		customerOrder.setShippingAddress(customer.getShippingAddress());
 		session.save(customerOrder);//insert, also execute update queries for other tables
 		return customerOrder;
 	}
-	
 
 }

@@ -1,11 +1,14 @@
 package com.niit.model;
 
 import javax.persistence.Entity;
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class CartItem {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cartItemId;
@@ -17,7 +20,6 @@ public class CartItem {
 	@ManyToOne
 	@JoinColumn(name="cart_id")
 	private Cart cart;
-	
 	public int getCartItemId() {
 		return cartItemId;
 	}
@@ -48,6 +50,4 @@ public class CartItem {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
-
 }
