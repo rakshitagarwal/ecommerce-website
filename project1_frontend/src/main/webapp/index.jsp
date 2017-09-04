@@ -1,9 +1,5 @@
-<%@ page language="java" contentType="text/html"%>
-
-<%@include file="WEB-INF\views\Main.jsp" %>
-
-
-
-
+<html>
+<body>
+<jsp:forward page="/home"></jsp:forward>
 </body>
 </html>

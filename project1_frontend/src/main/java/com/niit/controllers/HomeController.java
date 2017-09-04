@@ -8,32 +8,46 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.niit.Service.ProductService;
+import com.niit.service.ProductService;
 
 @Controller
-public class HomeController {
+public class HomeController
+{
+	
 	@Autowired
 	private ProductService productService;
-	HomeController(){
-		System.out.println("Creating instance of HomeController");
+	
+	HomeController()
+	{
+		System.out.println("Creating Instance of HomeController");
 	}
+	
 	@RequestMapping("/home")
-	public String homePage(HttpSession session){
-		session.setAttribute("categories", productService.getAllCategories());
+	public String homepage(HttpSession session)
+	{
+		session.setAttribute("categories",productService.getAllCategories());
 		return "home";
 	}
+
 	@RequestMapping("/aboutus")
-	public String aboutUs(){
+	public String aboutus()
+	{
 		return "aboutus";
 	}
 	
 	@RequestMapping("/login")
-	public String login(@RequestParam (required=false) String error,Model model){
-		if(error!=null)
-			model.addAttribute("error","Invalid username / password");
+	public String login(@RequestParam(value = "error", required = false) String error, 
+			@RequestParam(value = "logout", required = false) String logout, Model model)
+	{
+		if(error != null) {
+			model.addAttribute("error", "Username or Password Incorrect");
+			}
+		
+		if(logout != null) {
+			model.addAttribute("logout", "Logged out Successfully");
+			}
 		return "login";
 	}
-	
 	
 	
 }

@@ -1,4 +1,4 @@
- package com.niit.controllers;
+package com.niit.controllers;
 
 import javax.validation.Valid;
 
@@ -9,46 +9,43 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.niit.Service.CustomerService;
 import com.niit.model.Customer;
 import com.niit.model.User;
+import com.niit.service.CustomerService;
 
 @Controller
-public class CustomerController { 
+public class CustomerController {
+	
 	@Autowired
 	private CustomerService customerService;
 
 	@RequestMapping("/all/registrationform")
-	public String getRegistrationform(Model model) {
-		model.addAttribute("customer", new Customer());
+	public String getRegistrationForm(Model model)
+	{
+		model.addAttribute("customer",new Customer());
 		return "registrationform";
 	}
 
 	@RequestMapping("/all/savecustomer")
-	public String registerCustomer(@Valid @ModelAttribute Customer customer, 
-			BindingResult result , Model model) 
-	//Notempty , size , wellformed email , address , @Valid
+	public String registerCustomer(@Valid @ModelAttribute Customer customer,BindingResult result, Model model)
 	{
-
-		if (result.hasErrors()) {
-			return "registrationform";
-		}
-		User user = customerService.validateUsername(customer.getUser().getUsername());
-		if(user!=null) //duplicate username
+		if(result.hasErrors())
 		{
-			model.addAttribute("duplicateUsername","Username already exists");
 			return "registrationform";
 		}
-		Customer duplicateCustomer = customerService.validateEmail(customer.getEmail());
+		User user=customerService.validateUsername(customer.getUser().getUsername());
+		if(user!=null)
+		{
+			model.addAttribute("duplicateUsername","User Name already Exist");
+			return "registrationform";
+		}
+		Customer duplicateCustomer=customerService.validateEmail(customer.getEmail());
 		if(duplicateCustomer!=null)
 		{
-			model.addAttribute("duplicateEmail","Email address already exists");
-			return "registrationform";	
-			
+			model.addAttribute("duplicateEmail","Email Address already Exist");
+			return "registrationform";
 		}
 		customerService.registerCustomer(customer);
 		return "home";
-		
 	}
-
 }
